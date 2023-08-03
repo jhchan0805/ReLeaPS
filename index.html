@@ -1,1 +1,323 @@
-ReLeaPS: Reinforcement Learning-based Illumination Planning for Generalized Photometric Stereo
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>ReLeaPS</title>
+    <meta name="description" content="ReLeaPS">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.css">
+    <link rel="stylesheet" href="static/css/app.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.3/clipboard.min.js"></script>
+</head>
+<body>
+    <div class="container section-wrap" id="main-container">
+        <div class="row">
+            <h2 class="col-md-12 text-center">
+                ReLeaPS: Reinforcement Learning-based Illumination Planning for Generalized Photometric Stereo</br>
+                <small>
+                    <a href="https://iccv2023.thecvf.com">
+                        ICCV 2023
+                    </a>
+                </small>
+            </h2>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <ul class="list-inline">
+                    <li>
+                        <a href="https://www.ybh1998.space">
+                           Junhoong Chan
+                        </a><sup>1,2</sup>
+                    </li>
+                    <li>
+                        <a href="https://www.ybh1998.space">
+                           Bohan Yu
+                        </a><sup>1,2</sup>
+                    </li>
+                    <li>
+                        <a href="https://gh-home.github.io">
+                           Heng Guo
+                        </a><sup>3,4</sup>
+                    </li>
+                    <li>
+                        <a href="https://ieeexplore.ieee.org/author/37088549788">
+                           Jieji Ren
+                        </a><sup>5</sup>
+                    </li>
+                    <li>
+                        <a href="https://z0ngqing.github.io">
+                           Zongqing Lu
+                        </a><sup>1,2</sup>
+                    </li>
+                    <li>
+                        <a href="http://idm.pku.edu.cn/en/info/1009/1013.htm">
+                            Boxin Shi
+                        </a><sup>1,2</sup>
+                    </li>                    
+                </ul>
+                <ul class="list-inline">
+                    <li>
+                        <sup>1</sup>National Key Laboratory for Multimedia Information Processing, School of Computer Science, Peking University
+                    </li>
+                </ul>
+                <ul class="list-inline">
+                    <li>
+                        <sup>2</sup>National Engineering Research Center of Visual Technology, School of Computer Science, Peking University
+                    </li>
+                </ul>
+                <ul class="list-inline">
+                    <li>
+                        <sup>3</sup>School of Artificial Intelligence, Beijing University of Posts and Telecommunications
+                    </li>
+                    <li>
+                        <sup>4</sup>Osaka University
+                    </li>
+                </ul>
+                <ul class="list-inline">
+                    <li>
+                        <sup>5</sup>School of Mechanical Engineering, Shanghai Jiao Tong University
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+                <div class="col-md-8 col-sm-8 col-8 col-md-offset-2 col-sm-offset-2 text-center">
+                    <ul class="nav nav-pills nav-justified">
+                        <li></li>
+                        <li>
+                            <a href="https://docs.qq.com/pdf/DS05HcXlGSmlsZEd4?">
+                            <image src="static/img/paper_image.png" height="60px">
+                                <h4><strong>Paper</strong></h4>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://docs.qq.com/pdf/DS3BpaWpEcmtEbXZQ?">
+                            <image src="static/img/paper_image.png" height="60px">
+                                <h4><strong>Supplementary</strong></h4>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://youtu.be/Tj0t19EUoUA" target="_blank">
+                            <image src="static/img/youtube_icon.png" height="60px">
+                                <h4><strong>Video</strong></h4>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/jhchan0805/ReLeaPS">
+                            <image src="static/img/github.png" height="60px">
+                                <h4><strong>Code</strong></h4>
+                            </a>
+                        </li>   
+                        <li></li>                     
+                    </ul>
+                </div>
+        </div>
+        <!-- section nav -->
+        <div class="section-nav">
+            <ul class="list-inline">
+                <li class="list-inline-item">
+                    <a href="#section-abstract">Abstract</a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#section-highlights">Highlights</a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#section-methodology">Methodology</a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#section-video">Video</a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#section-results">Result</a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#section-citation">Citation</a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#section-contact">Contact</a>
+                </li>
+            </ul>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="text-center">
+                    <div >
+                        <a>
+                            <image style="..." src="static/iccv_img/fig_main_v5.png" width="100%">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row section" id="section-abstract">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Abstract
+                </h3>
+                <p class="text-justify">
+                    Illumination planning in photometric stereo aims to find a balance between surface normal estimation accuracy and image capturing efficiency by selecting optimal light configurations. It depends on factors such as the unknown shape and general reflectance of the target object, global illumination, and the choice of photometric stereo backbones, which are too complex to be handled by existing methods based on handcrafted illumination planning rules. This paper proposes a learning-based illumination planning method that jointly considers these factors via integrating a neural network and a generalized image formation model. As it is impractical to supervise illumination planning due to the enormous search space for ground truth light configurations, we formulate illumination planning using reinforcement learning, which explores the light space in a photometric stereo-aware, and reward-driven manner. Experiments on synthetic and real-world datasets demonstrate that photometric stereo under the 20-light configurations from our method is comparable to, or even surpasses that of using lights from all available directions.
+                </p>
+            </div>
+        </div>
+        <div class="row section" id="section-highlights">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Highlights
+                </h3>
+                <p class="text-justify">
+                    <ul>
+                        <li>
+                            Proposing the first RL approach for online illumination planning in a reward-driven manner;
+                        </li>
+                        <li>
+                            Designing a dueling DQN specially tailored to generalized photometric stereo;
+                        </li>
+                        <li>
+                            Enhancing the performance of different photometric stereo backbones with a smaller number of inputs by appropriate illumination planning; and
+                        </li>
+                        <li>
+                            Evaluating RL-based illumination planning by building a real data validation setup.
+                        </li>
+
+                    </ul>
+                </p>
+            </div>
+        </div>
+        <div class="row section" id="section-methodology">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Methodology
+                </h3>
+                <div class="text-center">
+                    <div >
+                        <a>
+                            <image style="..." src="static/iccv_img/rlps_flow.png" width="100%">
+                        </a>
+                    </div>
+                </div>
+                <p class="text-justify">
+                    The illumination planning pipeline of ReLeaPS:
+                    <ul>
+                        <li>
+                            The agent observes the state and selects action from Q-values. (Red block)
+                        </li>
+                        <li>
+                            The environment captures a new image based on action to form a new state. (Blue block)
+                        </li>
+                        <li>
+                            The angular error between the predicted and ground truth normals is calculated to form the reward. Then the network is updated based on reward. The process is a repetitive cycle with the above elements until the episode is terminated. (Green block)
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+        <div class="row section" id="section-video">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Video
+                </h3>
+                <div class="text-center">
+                    <div style="position:relative;padding-top:56.25%;">
+                        <iframe width="100%" height="315" src="https://www.youtube.com/embed/Tj0t19EUoUA" title="ReLeaPS" frameborder="1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row section" id="section-results">
+            <!-- result 1 -->
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Results-Quantitative Comparison
+                </h3>
+                <div class="text-center">
+                    <div >
+                        <a>
+                            <image style="..." src="static/iccv_img/result_table.jpg" width="70%">
+                        </a>
+                    </div>
+                </div>
+                <p class="text-justify">
+                    Quantitative comparisons of different illumination planning approaches in terms of a mean angular error on Blobby,  Sculpture, DiLiGenT, and DiLiGenT10^2 datasets using different photometric stereo backbones with 20 lights. `Rnd.' stands for the random selection of light directions averaged over 10 evaluations.
+                </p>
+            </div>
+            <!-- result 2 -->
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Results-Quantitative Evaluation
+                </h3>
+                <div class="text-center">
+                    <div >
+                        <a>
+                            <image style="..." src="static/iccv_img/result_graph.jpg" width="70%">
+                        </a>
+                    </div>
+                </div>
+                <p class="text-justify">
+                    Quantitative evaluation of illumination planning methods w.r.t. to the different number of light directions on real-world benchmarks: DiLiGenT (left) and DiLiGenT10^2 (right). The mean angular error is averaged among LS, CNN-PS, and PS-FCN backbones.
+                </p>
+            </div>
+            <!-- result 3 -->
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Results-Qualitative Comparison
+                </h3>
+                <div class="text-center">
+                    <div >
+                        <a>
+                            <image style="..." src="static/iccv_img/fig_illum_step.png" width="100%">
+                        </a>
+                    </div>
+                </div>
+                <p class="text-justify">
+                    Qualitative comparison of recovered surface normals and error maps for (left) Reading (from DiLiGenT), and (right) LionHead (captured using our setup) using different illumination planning methods (i.e., DC05, TK22, and Ours) with increasing light directions (3, 7, 11, 15, and 20 lights) in CNN-PS backbone. The red circle indicates a region with shadows that cannot be effectively recovered by CNN-PS, resulting in a large angular error.
+                </p>
+            </div>
+        </div>
+        <div class="row section" id="section-citation">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Citation
+                </h3>
+                <p style="border-style: groove;border-width: 1px;border-color: lightgrey;color:grey;">
+                    @InProceedings{jh2023releaps,</br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;author = {Chan, Junhoong and Yu, Bohan and Guo, Heng and Ren, Jieji and Lu, Zongqing and Shi, Boxin},</br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;title = {{ReLeaPS}: Reinforcement Learning-based Illumination Planning for Generalized Photometric Stereo},</br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;booktitle = {Proceedings of the International Conference on Computer Vision (ICCV)},</br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;month = {October},</br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;year = {2023},</br>
+                    }</br>
+                </p>
+
+            </div>
+        </div>
+        <div class="row section" id="section-contact">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Contact
+                </h3>
+                <p class='text-justify'>Any questions and further discussion, please send e-mail to <a>junhoong95_AT_stu_DOT_pku_DOT_edu_DOT_cn</a>.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Acknowledgements
+                </h3>
+                <p class="text-justify">
+                    This work is supported by the National Natural Science Foundation of China under Grant No. 62136001, 62088102. Heng Guo was supported by JSPS KAKENHI (Grant No. JP23H05491).
+                    <br><br>
+                </p>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="static/js/scripts.js"></script>
+</body>
+</html>

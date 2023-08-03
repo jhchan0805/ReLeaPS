@@ -1,0 +1,49 @@
+/* 
+    General
+----------------------------- */
+:root {
+  font-size: 16px;
+}
+body {
+  font-size: 1rem;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+/* Section nav */
+.section {
+  scroll-margin-top: 50px;
+}
+.section-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background: #ededed;
+  padding: 10px;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  text-align: center;
+}
+.section-nav ul {
+  margin-bottom: 0;
+}
+.section-nav ul a {
+  display: inline-block;
+  font-size: 1rem;
+  color: #333;
+  font-weight: bold;
+  padding: 3px;
+}
+.section-nav ul a.active,
+.section-nav ul a:hover {
+  color: #2779a3;
+  text-decoration: none;
+}
+
+@media (max-width: 767px) {
+  .section {
+    scroll-margin-top: 60px;
+  }
+}
