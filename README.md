@@ -1,5 +1,5 @@
 # ReLeaPS : Reinforcement Learning-based Illumination Planning for Generalized Photometric Stereo
-[\[GitHub Repo\]](https://github.com/jhchan0805/ReLeaPS)
+[\[GitHub\]](https://github.com/jhchan0805/ReLeaPS)
 [\[Homepage\]](https://jhchan0805.github.io/ReLeaPS)
 [\[Video\]](https://youtu.be/Tj0t19EUoUA)
 
@@ -26,12 +26,10 @@ git clone --recurse-submodules https://github.com/jhchan0805/ReLeaPS
   * Run `run_train.sh`.
 
 ### Evaluation
+  * Train the models yourself or download the pre-trained models from: [TBD]() and place under `data/models`.
   * Run `run_benchmark.sh`.
 
-Copyright (c) 2022-2023 Bohan Yu. All rights reserved. \
-ReLeaPS is free software licensed under GNU Affero General Public License version 3 or latter.
-
-## Citing
+## Citation
 If you find our work useful for your research, please consider citing:
 ```BibTeX
 @InProceedings{jh2023releaps,
@@ -42,4 +40,7 @@ If you find our work useful for your research, please consider citing:
     year = {2023},
 }
 ```
+
+Copyright (c) 2022-2023 Bohan Yu. All rights reserved. \
+ReLeaPS is free software licensed under GNU Affero General Public License version 3 or latter.
 
