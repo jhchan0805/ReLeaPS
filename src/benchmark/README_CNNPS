@@ -1,0 +1,8 @@
+src/benchmark/cnnps.py
+
+This is a modified version of CNN-PS from https://github.com/satoshi-ikehata/CNN-PS-ECCV2018 so that the pretrained
+model can be loaded on newer version of TensorFlow without having issue on
+https://github.com/satoshi-ikehata/CNN-PS-ECCV2018/issues/3
+
+Tested on Python 3.10, TensorFlow 2.11.0, and CUDA 11.1 on Nvidia GeForce RTX 3090
+

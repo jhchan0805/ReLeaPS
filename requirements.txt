@@ -1,0 +1,14 @@
+numpy
+opencv-python
+pymeshlab
+torch
+scipy
+matplotlib
+
+# To use CNN-PS as backbone
+tensorflow
+# To use PS-FCN as backbone
+scikit-image
+# To use SPLINE-Net as backbone
+torchvision
+

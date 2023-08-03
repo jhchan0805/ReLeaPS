@@ -1,0 +1,6 @@
+[submodule "src/benchmark/PS-FCN"]
+	path = src/benchmark/PS-FCN
+	url = https://github.com/guanyingc/PS-FCN.git
+[submodule "src/benchmark/SPLINE-Net"]
+	path = src/benchmark/SPLINE-Net
+	url = https://github.com/q-zh/SPLINE-Net.git
