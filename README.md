@@ -1,7 +1,7 @@
 # ReLeaPS : Reinforcement Learning-based Illumination Planning for Generalized Photometric Stereo
 [\[GitHub\]](https://github.com/jhchan0805/ReLeaPS)
 [\[Homepage\]](https://jhchan0805.github.io/ReLeaPS)
-[\[Video\]](https://youtu.be/Tj0t19EUoUA)
+[\[Video\]](https://youtu.be/5D4NBlf-L3w)
 
 ### Prerequisites
   * The code is tested on Linux with Python 3.10.
