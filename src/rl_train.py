@@ -143,7 +143,7 @@ def main():
       q_vals = q_vals.view(batch_size, q_vals.shape[1], q_vals.shape[2], q_vals.shape[3], -1)
       # print("q_vals", q_vals.shape, "target_index", target_index.shape)
       q_vals_target = qnet_target(batch_next_images, batch_next_dirs)
-      q_vals_target = q_vals.view(batch_size, q_vals.shape[1], q_vals.shape[2], q_vals.shape[3], -1)
+      q_vals_target = q_vals_target.view(batch_size, q_vals.shape[1], q_vals.shape[2], q_vals.shape[3], -1)
       # print("q_vals_target", q_vals_target.shape, "target", target.shape)
       target = torch.zeros([batch_size, n_max_images - 1, 8, 8], dtype=torch.float32, device=device)
       for i_batch in range(batch_size):
