@@ -22,7 +22,7 @@ git clone --recurse-submodules https://github.com/jhchan0805/ReLeaPS
 [3]: https://sites.google.com/site/photometricstereodata/single
 
 ### Training
-  * Download the synthetic dataset for training from: [TBD]() and place under `data`.
+  * Download the synthetic dataset for training from: [datasets](https://drive.google.com/file/d/1hZtjtY8DMOk-sITT_AoZzBs5oZzVdgkk/view?usp=drive_link) and place under `data`.
   * Run `run_train.sh`.
 
 ### Evaluation
