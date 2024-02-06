@@ -124,3 +124,64 @@ def action_greedy(data_loader, ids, start=0, step=1, down_sample=4):
       id_best = k
   return id_best
 
+def circle_light_ids(all_light_dirs, num_light_dirs, middle):
+  num_circle_light_dirs = num_light_dirs - 1 if middle else num_light_dirs
+  circle_rad = np.linspace(0, 2 * np.pi, num=num_circle_light_dirs, endpoint=False, dtype=np.float32)
+  circle_light_dir = np.stack([
+    np.sqrt(2 / 3) * np.sin(circle_rad),
+    np.sqrt(2 / 3) * np.cos(circle_rad),
+    np.full(num_circle_light_dirs, np.sqrt(1 / 3), dtype=np.float32)], axis=1)
+  if middle:
+    circle_light_dir = np.concatenate([circle_light_dir, [[0.0, 0.0, 1.0]]])
+  # print("circle_light_dir", circle_light_dir.shape, circle_light_dir.dtype)
+  circle_light_ids = np.argmax(np.sum(circle_light_dir[None, :, :] * all_light_dirs[:, None, :], axis=2), axis=0)
+  # print("circle_light_ids", circle_light_ids.shape, circle_light_ids.dtype)
+  return circle_light_ids
+
+def benchmark_circle_file(test_id, input_file, n_lights, middle, algo):
+  print("benchmark_circle_file", test_id, input_file, n_lights, middle, algo)
+  data_loader = np.load(input_file, allow_pickle=True)
+  zf = zipfile.ZipFile(f"/tmp/images/{algo}_{test_id:06d}.zip", mode="w", compression=zipfile.ZIP_DEFLATED)
+  results = []
+  for j in range(3, n_lights + 1):
+    all_light_dirs = light_dirs(data_loader["meta_info"].item()["light_dirs_mode"])
+    ids = circle_light_ids(all_light_dirs, j, middle)
+    normal_err, result, normal = benchmark_from_ids(data_loader, ids, algo)
+    results.append(result)
+    normal_mask = imload_downsample_from_ids(data_loader, ids, down_sample=1)[0][: ,:, 2] > 0.0
+    zf.writestr(f"normal_pred_{j:06d}.png", cv.imencode(".png", display_normal(normal, normal_mask))[1])
+    zf.writestr(f"normal_err_{j:06d}.png", cv.imencode(".png", display_normal_err(normal_err, normal_mask))[1])
+  zf.close()
+  return results
+
+def benchmark_circle_pool(pool, algo, input_path, n_lights, middle):
+  input_files = sorted(glob.glob(os.path.join(input_path, "*.npz")))
+  benchmark_circle_file_partial = partial(benchmark_circle_file, n_lights=n_lights, middle=middle, algo=algo)
+  results = pool.starmap(benchmark_circle_file_partial, enumerate(input_files))
+  for input_file, result in zip(input_files, results):
+    print(f"Result {algo} ({input_file}): {result}")
+  print(f"Result {algo} (mean): {np.mean(results, axis=0).tolist()}")
+
+def benchmark_okabe_file(test_id, input_file, n_lights, rng, algo):
+  from .okabe import okabe_light_ids
+  print("benchmark_okabe_file", test_id, input_file, n_lights, algo)
+  data_loader = np.load(input_file, allow_pickle=True)
+  zf = zipfile.ZipFile(f"/tmp/images/{algo}_{test_id:06d}.zip", mode="w", compression=zipfile.ZIP_DEFLATED)
+  results = []
+  ids = okabe_light_ids(data_loader, n_lights, rng)
+  for j in range(3, n_lights + 1):
+    normal_err, result, normal = benchmark_from_ids(data_loader, ids[:j], algo)
+    results.append(result)
+    normal_mask = imload_downsample_from_ids(data_loader, ids, down_sample=1)[0][: ,:, 2] > 0.0
+    zf.writestr(f"normal_pred_{j:06d}.png", cv.imencode(".png", display_normal(normal, normal_mask))[1])
+    zf.writestr(f"normal_err_{j:06d}.png", cv.imencode(".png", display_normal_err(normal_err, normal_mask))[1])
+  zf.close()
+  return results
+
+def benchmark_okabe_pool(pool, algo, input_path, n_lights, rng):
+  input_files = sorted(glob.glob(os.path.join(input_path, "*.npz")))
+  benchmark_okabe_file_partial = partial(benchmark_okabe_file, n_lights=n_lights, rng=rng, algo=algo)
+  results = pool.starmap(benchmark_okabe_file_partial, enumerate(input_files))
+  for input_file, result in zip(input_files, results):
+    print(f"Result {algo} ({input_file}): {result}")
+  print(f"Result {algo} (mean): {np.mean(results, axis=0).tolist()}")
