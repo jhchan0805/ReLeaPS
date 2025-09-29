@@ -159,7 +159,7 @@ def main():
     qnet.train()
     q_vals = qnet(batch_state_images, batch_state_dirs)
     loss_smooth = 1e-8 * batch_size * n_max_images * (
-      (q_vals[..., :, :-1] - q_vals[..., :, :1]).abs().mean() +
+      (q_vals[..., :, :-1] - q_vals[..., :, 1:]).abs().mean() +
       (q_vals[..., :-1, :] - q_vals[..., 1:, :]).abs().mean())
     q_vals = q_vals.view(batch_size, n_max_images - 1, 8, 8, -1)
     loss_bellman = 0.0
